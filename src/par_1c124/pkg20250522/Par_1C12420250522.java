@@ -14,7 +14,9 @@ public class Par_1C12420250522 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        CentroDeNaves cn = new CentroDeNaves("Centro de naves beyi");
+        
+        cn.menuPrincipal();
     }
     
 }
