@@ -14,7 +14,7 @@ public class Par_1C12420250522 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        CentroDeNaves cn = new CentroDeNaves("Centro de naves beyi");
+        CentroDeNaves cn = new CentroDeNaves("Centro de naves Beyi");
         
         cn.menuPrincipal();
     }

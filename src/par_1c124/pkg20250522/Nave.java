@@ -31,8 +31,6 @@ public abstract class Nave implements Comparable<Nave>{
         return año;
     }
     
-    
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -45,6 +43,6 @@ public abstract class Nave implements Comparable<Nave>{
     @Override
     public int compareTo(Nave otra) {
         return Integer.compare(this.año, otra.año);
-    } 
+    }
     
 }

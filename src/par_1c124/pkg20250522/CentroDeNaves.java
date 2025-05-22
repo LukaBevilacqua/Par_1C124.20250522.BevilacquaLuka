@@ -5,6 +5,7 @@
 package par_1c124.pkg20250522;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -51,6 +52,7 @@ public class CentroDeNaves {
         }
     }
     
+    
     public void menuPrincipal(){
         Scanner sc = new Scanner(System.in);
         int opcion;
@@ -78,11 +80,23 @@ public class CentroDeNaves {
                case 3:
                    this.iniciarExploracion();
                    break;
+               case 4:
+                   Collections.sort(this.listaNaves, new ComparatorPorNombre());
+                   this.mostrarNaves();
+                   break;
+               case 5:
+                   Collections.sort(this.listaNaves, new ComparatorPorAño());
+                   this.mostrarNaves();
+                   break;
+               case 6:
+                   Collections.sort(this.listaNaves, new ComparatorPorCapacidadTripulacion());
+                   this.mostrarNaves();
+                   break;
                 case 7:
                    System.out.println("Saliendo....");
                    break;
                default:
-                   throw new AssertionError();
+                   System.out.println("Opcion invalida, intente nuevamente");
            }
         }while(opcion != 7);
     }
@@ -93,11 +107,27 @@ public class CentroDeNaves {
             case "exploracion":
                 System.out.println("Nombre: ");
                 String nombreExploracion = sc.nextLine();
-                System.out.println("Año: ");
-                int añoExploracion = sc.nextInt();
+                int añoExploracion;
+                while(true){
+                    System.out.println("Año: ");
+                    añoExploracion = sc.nextInt();
+                    if(añoExploracion > 0){
+                        break;
+                    }else{
+                        System.out.println("Año invalido, intente nuevamente");
+                    }
+                }
                 sc.nextLine();
-                System.out.println("Capacidad de pasajeros: ");
-                int capacidadExploracion = sc.nextInt();
+                int capacidadExploracion;
+                while(true){
+                    System.out.println("Capacidad de pasajeros: ");
+                    capacidadExploracion = sc.nextInt();
+                    if(capacidadExploracion > 0){
+                        break;
+                    }else{
+                        System.out.println("capacidad invalida, intente nuevamente");
+                    }
+                }
                 sc.nextLine();
                 String tipoMision;
                 while(true){
@@ -108,7 +138,7 @@ public class CentroDeNaves {
                         tipoMision.equals("CONTACTO")){
                         break;
                     }else{
-                        System.out.println("Mision invalida. Intente nuevamente.");
+                        System.out.println("Mision invalida. Intente nuevamente. ");
                     }
                 }
                 Exploracion e = new Exploracion(tipoMision, nombreExploracion, capacidadExploracion, añoExploracion);
@@ -117,20 +147,36 @@ public class CentroDeNaves {
             case "carguero":
                 System.out.println("Nombre: ");
                 String nombreCarguero = sc.nextLine();
-                System.out.println("Año: ");
-                int añoCarguero = sc.nextInt();
+                int añoCarguero;
+                while(true){
+                    System.out.println("Año: ");
+                    añoCarguero = sc.nextInt();
+                    if(añoCarguero > 0){
+                        break;
+                    }else{
+                        System.out.println("Año invalido, intente nuevamente");
+                    }
+                }
                 sc.nextLine();
-                System.out.println("Capacidad de pasajeros: ");
-                int capacidadPasajerosCarguero = sc.nextInt();
+                int capacidadPasajerosCarguero;
+                while(true){
+                    System.out.println("Capacidad de pasajeros: ");
+                    capacidadPasajerosCarguero = sc.nextInt();
+                    if(capacidadPasajerosCarguero > 0){
+                        break;
+                    }else{
+                        System.out.println("capacidad invalida, intente nuevamente");
+                    }
+                }
                 sc.nextLine();
                 int capacidadCarga;
                 while(true){
-                    System.out.println("Ingrese la capacidad de la carga (100 - 500) ");
+                    System.out.println("Ingrese la capacidad de la carga (100 - 500): ");
                     capacidadCarga = sc.nextInt();
                     if(capacidadCarga >= 100 && capacidadCarga <= 500){
                         break;
                     }else{
-                        System.out.println("cantidad invalida intente nuevamente");
+                        System.out.println("capacidad fuera de rango, intente nuevamente");
                     }                    
                 }
                 Carguero c = new Carguero(capacidadCarga, nombreCarguero, capacidadPasajerosCarguero, añoCarguero);  
@@ -139,20 +185,44 @@ public class CentroDeNaves {
             case "crucero estelar":
                 System.out.println("Nombre: ");
                 String nombreCruceroEstelar = sc.nextLine();
-                System.out.println("Año: ");
-                int añoCruceroEstelar = sc.nextInt();
+                int añoCruceroEstelar;
+                while(true){
+                    System.out.println("Año: ");
+                    añoCruceroEstelar = sc.nextInt();
+                    if(añoCruceroEstelar > 0){
+                        break;
+                    }else{
+                        System.out.println("Año invalido, intente nuevamente");
+                    }
+                }
                 sc.nextLine();
-                System.out.println("Capacidad de pasajeros: ");
-                int capacidadPasajerosCruceroEstelar = sc.nextInt();
+                int capacidadPasajerosCruceroEstelar;
+                while(true){
+                    System.out.println("Capacidad de pasajeros: ");
+                    capacidadPasajerosCruceroEstelar = sc.nextInt();
+                    if(capacidadPasajerosCruceroEstelar > 0){
+                        break;
+                    }else{
+                        System.out.println("capacidad invalida, intente nuevamente");
+                    }
+                }
                 sc.nextLine();
-                System.out.println("Cantidad de pasajeros: ");
-                int cantPasajeros = sc.nextInt();
+                int cantPasajeros;
+                while(true){
+                    System.out.println("Cantidad de pasajeros: ");
+                    cantPasajeros = sc.nextInt();
+                    if(cantPasajeros <= capacidadPasajerosCruceroEstelar){
+                        break;
+                    }else{
+                        System.out.println("No se puede exceder la capacidad de pasajeros, intente nuevamente");
+                    }
+                }
                 CruceroEstelar cE = new CruceroEstelar(cantPasajeros, nombreCruceroEstelar, añoCruceroEstelar, 
                         capacidadPasajerosCruceroEstelar);  
                 this.agregarNave(cE);
                 break;
             default:
-                System.out.println("Lo que desea publicar no es valido");
+                System.out.println("El tipo de nave no es valida");
         }
     }
     
